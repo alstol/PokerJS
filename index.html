@@ -1,0 +1,33 @@
+var itemID = 17003000;
+var amountDone = 0;
+//var amountToDo = Bag.getItemByItemId(itemID).count;
+var amountToDo = 10;
+var okTimer;
+
+var pressOKPls = function() {
+    $('.textart_title:contains("OK")').click();
+}
+
+
+var stuff = function() {
+    ItemUse.doIt(itemID);
+    amountDone++;
+    if(amountDone == amountToDo){
+        window.clearInterval(timer);
+        console.log("Done. " + amountDone);
+        moreStuff();
+
+    }
+}
+
+var moreStuff = function() {
+    if($('.textart_title:contains("OK")').click().size() > 1){
+        pressOKPls();
+        okTimer = window.setInterval(moreStuff, 500);
+        console.log("Ok!");
+    } else {
+        window.clearInterval(okTimer);
+        console.log("Ok Done!");
+    }
+}
+var timer = window.setInterval(stuff, 100);
